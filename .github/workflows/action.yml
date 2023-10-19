@@ -15,11 +15,18 @@ jobs:
         run: |
           docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
       - name: Run Trivy vulnerability scanner
+      
         uses: aquasecurity/trivy-action@master
         with:
-            scan-type: 'fs'
-            scan-ref: '.'
-            trivy-config: trivy.yaml
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+      - run: exit 0
+        
+
 
       - name: Send custom JSON data to Slack workflow
         id: slack
