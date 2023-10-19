@@ -17,12 +17,9 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+            scan-type: 'fs'
+            scan-ref: '.'
+            trivy-config: trivy.yaml
 
       - name: Send custom JSON data to Slack workflow
         id: slack
