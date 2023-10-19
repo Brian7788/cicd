@@ -3,7 +3,7 @@ name: Security Scan and Report
 on:
   push:
     branches:
-      - "V**.**"
+      - "v**.**"
 jobs:
   security_scan:
     runs-on: ubuntu-latest
