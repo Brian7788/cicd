@@ -26,7 +26,7 @@ jobs:
           severity: 'CRITICAL'
       
 
-      - name: Slack Notification
+      - name: Slack Notification1
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
