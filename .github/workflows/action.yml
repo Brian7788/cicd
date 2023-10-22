@@ -30,7 +30,14 @@ jobs:
         uses: sigstore/cosign-installer@v3.1.1
       - name: Check install!
         run: cosign version
-        
+      - name: generate cosignkey
+        run: cosign generate-key-pair
+      - name: show key
+        run: cat cosign.key
+      - name: show pub
+        run: cat cosign.pub 
+
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
