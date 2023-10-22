@@ -38,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: user/app:latest
+          tags: brian7788/cicd:${{github.sha}}
 
       - name: Slack Notification
         if: ${{failure()}}
