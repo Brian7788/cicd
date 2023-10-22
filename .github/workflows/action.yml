@@ -24,7 +24,8 @@ jobs:
           ignore-unfixed: true
           format: 'table'
           output: 'trivy-results.txt'
-          severity: 'CRITICAL'
+          exit-code: 1
+          severity: 'CRITICAL,HIGH'
       
 
       - name: Install Cosign
@@ -57,7 +58,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_MESSAGE: 'Name: LIN BINGYI\n Matriculation number: A028622L\n Email: e1221834@u.nus.edu \n Repository: https://github.com/${{github.repository}} \n Docker Hub URL: https://hub.docker.com/repository/docker/brian7788/cicd/general'
+          SLACK_MESSAGE: "Name: LIN BINGYI\n Matriculation number: A028622L\n Email: e1221834@u.nus.edu \n Repository: https://github.com/${{github.repository}} \n Docker Hub URL: https://hub.docker.com/repository/docker/brian7788/cicd/general"
           SLACK_TITLE: Post Title
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
 
