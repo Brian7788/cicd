@@ -25,7 +25,7 @@ jobs:
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: 1
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
       
 
       - name: Install Cosign
@@ -77,7 +77,6 @@ jobs:
         with:
           slack_token: ${{ secrets.SLACK_TOKEN }}
           channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
-          content: 'file content'
           file_type: 'text'
           file_path: './trivy-results.txt'
           initial_comment: 'post by slack-upload-file'
