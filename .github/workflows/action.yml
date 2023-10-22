@@ -29,6 +29,7 @@ jobs:
       - name: Install Cosign
         uses: sigstore/cosign-installer@v3.1.1
 
+        
 
 
       - name: Set up QEMU
@@ -45,6 +46,11 @@ jobs:
         with:
           push: true
           tags: brian7788/cicd:${{github.sha}}
+      - name: Sign image with a key
+        run: |
+          cosign sign --yes --key env://COSIGN_PRIVATE_KEY "brian7788/cicd:${{github.sha}}"
+        env:
+          COSIGN_PRIVATE_KEY: ${{ secrets.COSIGN_PRIVATE_KEY }}
 
       - name: Slack Notification
         if: ${{failure()}}
