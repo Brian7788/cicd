@@ -25,7 +25,7 @@ jobs:
           format: 'table'
           output: 'trivy-results.txt'
           exit-code: 1
-          severity: 'CRITICAL'
+          severity: 'CRITICAL,HIGH'
       
 
       - name: Install Cosign
@@ -67,7 +67,7 @@ jobs:
         uses: rtCamp/action-slack-notify@v2
         env:
           SLACK_COLOR: ${{ job.status }} # or a specific color like 'good' or '#ff00ff'
-          SLACK_MESSAGE: 'Post Content :rocket:'
+          SLACK_MESSAGE: 'Scan Failed'
           SLACK_TITLE: Post Title
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK_URL }}
       
@@ -79,7 +79,7 @@ jobs:
           channel_id: ${{ secrets.SLACK_CHANNEL_ID }}
           content: 'file content'
           file_type: 'text'
-          file_name: 'trivy-results.txt'
+          file_name: './trivy-results.txt'
           title: 'title of file'
           initial_comment: 'post by slack-upload-file'
 
