@@ -25,6 +25,12 @@ jobs:
           output: 'trivy-results.txt'
           severity: 'CRITICAL'
       
+
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@v3.1.1
+      - name: Check install!
+        run: cosign version
+        
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
       - name: Set up Docker Buildx
@@ -60,3 +66,4 @@ jobs:
           file_name: 'trivy-results.txt'
           title: 'title of file'
           initial_comment: 'post by slack-upload-file'
+
